@@ -25,5 +25,5 @@ function [p] = probe_maker(p)
     aperture_function( K > p.probe.convergence_semi_angle) = 0;
     p.probe.probe_function_reciprocal = aperture_function.*transfer_function;
     p.probe.probe_function_real = fftshift(ifft2(ifftshift(p.probe.probe_function_reciprocal)));
-    p.probe.probe_function_real = p.probe.probe_function_real.^2;
+    p.probe.probe_function_real = abs(p.probe.probe_function_real).^2;
 end

@@ -39,7 +39,11 @@ function plotting(p)
     if p.scan.plot_fluence_distribution_map == true
         fig(13) = figure();
         hAx = axes(fig(13));
-        imagesc(abs(p.scan.fluence_map), 'Parent', hAx);colormap('gray');axis image off;clim([0 p.probe.fluence_limit]);
+        imagesc(abs(p.scan.fluence_map), 'Parent', hAx);colormap('gray');axis image off;
+        if p.probe.fluence_limit>0
+        clim([0 p.probe.fluence_limit]);
+        else
+        end
         
         pixPerA = 1/p.global.delta_e;
         scalebarLength = 10^(2+round(log10(p.global.delta_e)));  
